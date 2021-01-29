@@ -16,6 +16,7 @@ def all_states():
         states_list.append(item.to_dict())
     return jsonify(states_list)
 
+
 @app_views.route('/states/<state_id>', strict_slashes=False)
 def state_by_id(state_id):
     """Retrieves a State object by id"""
@@ -24,7 +25,8 @@ def state_by_id(state_id):
         abort(404)
     return jsonify(state.to_dict())
 
-@app_views.route('/states/<state_id>', methods=['DELETE'],strict_slashes=False)
+
+@app_views.route('/states/<state_id>', methods=['DELETE'], strict_slashes=False)
 def delete_state_by_id(state_id):
     """Deletes a State object by id"""
     state = storage.get(State, state_id)
@@ -36,7 +38,8 @@ def delete_state_by_id(state_id):
         storage.save()
     return jsonify({}), 200
 
-@app_views.route('/states', methods=['POST'],strict_slashes=False)
+
+@app_views.route('/states', methods=['POST'], strict_slashes=False)
 def post_state_by_id():
     """Creates a State object """
 
@@ -50,7 +53,7 @@ def post_state_by_id():
     return jsonify(state.to_dict()), 201
 
 
-@app_views.route('/states/<state_id>', methods=['PUT'],strict_slashes=False)
+@app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
 def put_state_by_id(state_id):
     """Updates a State object """
     state = storage.get(State, state_id)

@@ -16,13 +16,14 @@ def status():
     """App status"""
     return jsonify({"status": "OK"})
 
+
 @app_views.route('/stats', strict_slashes=False)
 def stats():
     """ endpoint that retrieves the number of each objects by type"""
-    classes = {"amenities": Amenity, "cities": City,
-               "places": Place, "reviews": Review, "states": State, "users": User}
+    classes = {"amenities": Amenity, "cities": City, "places": Place,
+            "reviews": Review, "states": State, "users": User}
     count_of_objs = {}
     for key, value in classes.items():
-        count_of_objs[key] = storage.count(value) 
+        count_of_objs[key] = storage.count(value)
         print(count_of_objs)
     return jsonify(count_of_objs)
